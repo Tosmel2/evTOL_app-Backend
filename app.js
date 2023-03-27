@@ -48,5 +48,5 @@ app.use("/api/v1/evtol", evtolRoutes)
 app.use("/api/v1/history", historyRoutes)
 
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8000
 app.listen(PORT, console.log(`Server is running at ${PORT}`))

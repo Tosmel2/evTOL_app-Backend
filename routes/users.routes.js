@@ -1,4 +1,4 @@
-import { getSpecificUser, updatePassword, updateUser, userLogin, userRegister } from "../controllers/user.controller.js"
+import { getSpecificUser, updatePassword,getAllUsers, updateUser, userLogin, userRegister } from "../controllers/user.controller.js"
 import { isLogin } from "../middleware/isLogin.js";
 import express from "express";
 import { adminLogin, adminRegister, changePassword } from "../controllers/admin.controller.js";
@@ -14,8 +14,10 @@ userRoutes.post("/login", userLogin)
 // get a specific user details
 userRoutes.get("/:id", isLogin, getSpecificUser)
 
+userRoutes.get("/",  getAllUsers)
+
 // update user details
-userRoutes.put("/update", isLogin, updateUser)
+userRoutes.put("/:id", isLogin, updateUser)
 
 // update password
 userRoutes.put("/updatepassword", isLogin, updatePassword)

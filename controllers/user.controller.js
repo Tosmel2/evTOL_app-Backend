@@ -58,7 +58,7 @@ export const userLogin = async(req, res) => {
         if(!passwordFound){
             res.json({
                 status: "error",
-                message: "incorrect login details"
+                message: "Wrong details, Please try again"
             })
         }else{
             res.json({
@@ -104,12 +104,25 @@ export const getSpecificUser = async(req, res) => {
     }
 }
 
+export const getAllUsers = async (req, res) => {
+    try {
+      const findUser = await EvtolUser.find();
+      res.status(200).json({
+        status: 'success',
+        data: findUser
+      });
+    } catch (error) {
+      res.status(500).json({ 
+        message: error.message 
+      });
+    }
+  };
 
 // update user details
 export const updateUser = async(req, res) => {
     const{firstname, lastname, email} = req.body;
 
-    const user = await EvtolUser.findById(req.userAuth)
+    const user = await EvtolUser.findByIdAndUpdate(req.userAuth)
 
     try{
         await EvtolUser.updateOne(user, {
@@ -124,7 +137,7 @@ export const updateUser = async(req, res) => {
             new: true
         })
 
-        user.save()
+        // user.save()
 
         res.json({
             status: "success",
