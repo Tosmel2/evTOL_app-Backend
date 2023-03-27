@@ -58,7 +58,7 @@ export const userLogin = async(req, res) => {
         if(!passwordFound){
             res.json({
                 status: "error",
-                message: "incorrect Password"
+                message: "incorrect login details"
             })
         }else{
             res.json({

@@ -12,7 +12,7 @@ userRoutes.post("/register", userRegister);
 userRoutes.post("/login", userLogin)
 
 // get a specific user details
-userRoutes.get("/specificUser", isLogin, getSpecificUser)
+userRoutes.get("/:id", isLogin, getSpecificUser)
 
 // update user details
 userRoutes.put("/update", isLogin, updateUser)
